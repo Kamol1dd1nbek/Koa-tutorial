@@ -1,13 +1,17 @@
 const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
+const cors = require('@koa/cors');
+const serve = require('koa-static');
 const config = require('config');
 
-const app = new Koa();
-//context => ctx
+const mainRouter = require("./routes/index.routes");
 
-app.use(ctx => {
-    // console.log(ctx.req.headres);
-    ctx.body = "Salom Koa"
-})
+const app = new Koa();
+app.use(bodyParser());
+app.use(cors());
+//context => ctx
+app.use(serve(__dirname + "/public"));
+app.use(mainRouter());
 
 function start() {
     try {

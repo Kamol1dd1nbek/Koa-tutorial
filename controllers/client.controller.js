@@ -7,7 +7,9 @@ const getClient = (ctx) => {
 }
 
 const addClient = (ctx) => {
-
+    console.log(ctx.request.body);
+    ctx.status = 201;
+    ctx.body = ctx.request.body;
 }
 
 module.exports = {
